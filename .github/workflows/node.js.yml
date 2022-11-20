@@ -12,8 +12,8 @@ name: Publish Docker image
 on:
   push:
     # Pattern matched against refs/tags
-    #tags:        
-      #- '*' # Push events to every tag not containing /
+    tags:        
+      - '*' # Push events to every tag not containing /
     branches:
       - main
 
@@ -39,8 +39,8 @@ jobs:
           images: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}
       
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: ${{ github.ref_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}, ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
