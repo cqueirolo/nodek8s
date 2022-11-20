@@ -34,7 +34,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}
+          images: cqueirolo/${{ github.event.repository.name }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
