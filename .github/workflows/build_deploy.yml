@@ -52,7 +52,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}, ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}
   
   gke_deployment:
     name: Deploys to GKE cluster
