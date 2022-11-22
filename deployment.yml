@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: api-gateway
+  name: api-gateway
+  namespace: fiuber-ns
+spec:
+  selector:
+    app: api-gateway
+  type: NodePort
+  sessionAffinity: None
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 5800
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  api-gateway
+  namespace: fiuber-ns
+  labels:
+    app:  api-gateway
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  replicas: 1
+  template:
+    metadata:
+      name: api-gateway
+      labels:
+        app:  api-gateway
+    spec:
+      containers:
+      - name:  api-gateway
+        image:  cqueirolo/api-gateway:latest
+        ports:
+        - name:  http
+          containerPort: 5800
+          protocol: TCP
