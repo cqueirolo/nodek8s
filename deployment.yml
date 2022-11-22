@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name:  nodek8s
-        image:  cqueirolo/nodek8s:latest
+        image:  cqueirolo/nodek8s
         ports:
         - name:  http
           containerPort: 5800
