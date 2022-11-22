@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: api-gateway
-  name: api-gateway
+    app: nodek8s
+  name: nodek8s
   namespace: fiuber-ns
 spec:
   selector:
-    app: api-gateway
+    app: nodek8s
   type: NodePort
   sessionAffinity: None
   ports:
@@ -21,24 +21,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  api-gateway
+  name:  nodek8s
   namespace: fiuber-ns
   labels:
-    app:  api-gateway
+    app:  nodek8s
 spec:
   selector:
     matchLabels:
-      app: api-gateway
+      app: nodek8s
   replicas: 1
   template:
     metadata:
-      name: api-gateway
+      name: nodek8s
       labels:
-        app:  api-gateway
+        app:  nodek8s
     spec:
       containers:
-      - name:  api-gateway
-        image:  cqueirolo/api-gateway:latest
+      - name:  nodek8s
+        image:  cqueirolo/nodek8s:latest
         ports:
         - name:  http
           containerPort: 5800
